@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Наталья Костоусова](https://up.htmlacademy.ru/php/11/user/507023).
-* Наставник: `Неизвестно`.
+* Наставник: [Антон Попов](https://htmlacademy.ru/profile/joker).
 
 ---
 
