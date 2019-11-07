@@ -1,5 +1,30 @@
 <?php
-$categories = ['Доски и лыжи', 'Крепления', 'Ботинки', 'Одежда', 'Инструменты', 'Разное'];
+$categories  = [
+    [
+        'name' => 'Доски и лыжи',
+        'modifier' => 'boards'
+    ],
+    [
+        'name' => 'Крепления',
+        'modifier' => 'attachment'
+    ],
+    [
+        'name' => 'Ботинки',
+        'modifier' => 'boots'
+    ],
+    [
+        'name' => 'Одежда',
+        'modifier' => 'clothing'
+    ],
+    [
+        'name' => 'Инструменты',
+        'modifier' => 'tools'
+    ],
+    [
+        'name' => 'Разное',
+        'modifier' => 'other'
+    ]
+];
 
 $products = [
     [
@@ -7,41 +32,41 @@ $products = [
         'category' => 'Доски и лыжи',
         'price' => 10999,
         'url' => 'img/lot-1.jpg',
-        "date" =>'2019-11-07'
+        'date' =>'2019-11-07'
     ],
     [
         'name' => 'DC Ply Mens 2016/2017 Snowboard',
         'category' => 'Доски и лыжи',
         'price' => 159999,
         'url' => 'img/lot-2.jpg',
-        "date" =>'2019-11-08'
+        'date' =>'2019-11-08'
     ],
     [
         'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
         'category' => 'Крепления',
         'price' => 8000,
         'url' => 'img/lot-3.jpg',
-        "date" =>'2019-11-09'
+        'date' =>'2019-11-09'
     ],
     [
         'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
         'category' => 'Ботинки',
         'price' => 10999,
         'url' => 'img/lot-4.jpg',
-        "date" =>'2019-11-10'
+        'date' =>'2019-11-10'
     ],
     [
         'name' => 'Куртка для сноуборда DC Mutiny Charocal',
         'category' => 'Одежда',
         'price' => 7500,
         'url' => 'img/lot-5.jpg',
-        "date" =>'2019-11-12'
+        'date' =>'2019-11-12'
     ],
     [
         'name' => 'Маска Oakley Canopy',
         'category' => 'Разное',
         'price' => 5400,
         'url' => 'img/lot-6.jpg',
-        "date" =>'2019-11-13'
+        'date' =>'2019-11-13'
     ],
 ];
