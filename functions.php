@@ -4,13 +4,11 @@
  * @param $price - изначальная цена
  * @return $price - итоговая цена
  */
-
 function format_price($price) {
     $price_content = '<b class="rub">р</b>';
     $price = ceil($price);
-    if ($price >= 1000) {
-      $price = number_format($price, null, null, ' ');
-    }
+    $price = number_format($price, null, null, ' ');
+
     return $price . ' ' . $price_content;
 };
 
@@ -19,7 +17,6 @@ function format_price($price) {
  * @param $date- дата истечения лота
  * @return $remaining_time - информация об оставшемся времени
  */
-
 function get_time($date) {
     $exp_date = strtotime($date);
     $current_time = time();
