@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS yeticave;
+
 CREATE DATABASE yeticave
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
@@ -10,7 +12,16 @@ CREATE table categories (
   symbol_code CHAR(128)
 );
 
-CREATE table lot (
+CREATE table users (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  email VARCHAR(128) NOT NULL UNIQUE,
+  name VARCHAR(128) NOT NULL,
+  password VARCHAR(128) NOT NULL UNIQUE,
+  contacts VARCHAR(128) UNIQUE,
+);
+
+CREATE table lots (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   name VARCHAR(128) NOT NULL,
@@ -20,7 +31,7 @@ CREATE table lot (
   finish_date DATETIME NOT NULL,
   step INT NOT NULL,
   user_id INT NOT NULL,
-  winner_id INT NOT NULL,
+  winner_id INT,
   category_id INT NOT NULL
 );
 
@@ -30,14 +41,4 @@ CREATE table rates (
   price INT NOT NULL,
   user_id INT NOT NULL,
   lot_id INT
-);
-
-CREATE table users (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  email VARCHAR(128) NOT NULL UNIQUE,
-  password VARCHAR(128) NOT NULL UNIQUE,
-  contacts VARCHAR(128) UNIQUE,
-  lot_id INT,
-  rate_id INT
 );
