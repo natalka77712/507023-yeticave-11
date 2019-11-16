@@ -2,6 +2,7 @@
 require_once('helpers.php');
 require_once('data.php');
 require_once('functions.php');
+require_once('unit.php');
 
 //устанавливаем и проверяем соединение с базой данных
 $db_con = mysqli_connect($db['host'], $db['user'], $db['password'], $db['database']);
@@ -42,10 +43,6 @@ if (!$result) {
 } else {
     $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
-
-$is_auth = rand(0, 1);
-$user_name = 'Наталья';
-date_default_timezone_set('Europe/Moscow');
 
 $page_content = include_template('main.php', ['products' => $products, 'categories' => $categories]);
 
