@@ -3,7 +3,7 @@
     <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
     <ul class="promo__list">
         <?php foreach ($categories as $category): ?>
-            <li class="promo__item promo__item--<?= $category['modifier']; ?>">
+            <li class="promo__item promo__item--<?= $category['symbol_code']; ?>">
                 <a class="promo__link" href="pages/all-lots.html"><?= $category['name']; ?></a>
             </li>
         <?php endforeach; ?>
@@ -17,7 +17,7 @@
         <?php foreach ($products as $product): ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                <img src="<?= htmlspecialchars($product['url']); ?>" width="350" height="260" alt="<?= htmlspecialchars($product['name']); ?>">
+                <img src="<?= htmlspecialchars($product['image']); ?>" width="350" height="260" alt="<?= htmlspecialchars($product['name']); ?>">
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?= htmlspecialchars($product['category']); ?></span>
@@ -25,10 +25,10 @@
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= format_price(htmlspecialchars($product['price'])); ?></span>
+                            <span class="lot__cost"><?= format_price(htmlspecialchars($product['start_price'])); ?></span>
                         </div>
-                        <div class="lot__timer timer <?php if (get_time($product['date']) < 1): ?> timer--finishing <?php endif ?>">
-                            <?= get_time($product['date']); ?>
+                        <div class="lot__timer timer <?php if (get_time($product['finish_date']) < 1): ?> timer--finishing <?php endif ?>">
+                            <?= get_time($product['finish_date']); ?>
                         </div>
                     </div>
                 </div>

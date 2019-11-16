@@ -1,4 +1,12 @@
 <?php
+
+$db = [
+    'host' => 'localhost',
+    'user' => 'root',
+    'password' => '',
+    'database' => 'yeticave',
+];
+
 $categories  = [
     [
         'name' => 'Доски и лыжи',
