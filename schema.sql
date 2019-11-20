@@ -42,3 +42,10 @@ CREATE table rates (
   user_id INT NOT NULL,
   lot_id INT
 );
+
+ALTER TABLE lots ADD FOREIGN KEY(user_id) REFERENCES users(id);
+ALTER TABLE lots ADD FOREIGN KEY(winner_id) REFERENCES users(id);
+ALTER TABLE lots ADD FOREIGN KEY(category_id) REFERENCES categories(id);
+
+ALTER TABLE rates ADD FOREIGN KEY(user_id) REFERENCES users(id);
+ALTER TABLE rates ADD FOREIGN KEY(lot_id) REFERENCES lots(id);
