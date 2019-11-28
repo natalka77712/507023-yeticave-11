@@ -1,28 +1,18 @@
 <?php
 require_once('helpers.php');
+require_once('unit.php');
 require_once('data.php');
 require_once('functions.php');
-require_once('unit.php');
+require_once('bd.php');
 
-//устанавливаем и проверяем соединение с базой данных
-$db_con = mysqli_connect($db['host'], $db['user'], $db['password'], $db['database']);
-
-if (!$db_con) {
-    $error = mysqli_connect_error();
-    print("Ошибка: Невозможно подключиться к MySQL " . $error);
-} else {
-    mysqli_set_charset($db_con, "utf8");
 //запрос на получение новых лотов
-    $sql = "SELECT name, start_price, image, start_price + step AS current_price, category_id FROM lots
-            WHERE finishing_date > NOW()
-            SELECT l.*, c.name FROM lots 1
-            LEFT JOIN categories c ON 1.category_id = c.id
-            WHERE l.id = $id
-            ORDER BY lots.create_date DESC";
+$sql = 'SELECT lots.id AS lot_id, lots.name AS lot_name, create_date, finish_date, start_price, image, start_price + step AS current_price, categories.name AS category_name
+        FROM lots categories ON lots.category_id = categories.id
+        ORDER BY lots.create_date DESC';
 
-    $id = intval($_GET['id']);
-    $result = mysqli_query($db_con, $sql);
-}
+$id = intval($_GET['id']);
+$result = mysqli_query($db_con, $sql);
+
 //успешное выполнение запроса
 if (!$result) {
     $error = mysqli_error($db_con);
@@ -34,7 +24,7 @@ if (!$result) {
     $page_content = include_template("index.php", ['goods' => $goods]);
 }
 //запрос на список категорий
-$sql = "SELECT `name` FROM `categories`;";
+$sql = "SELECT name FROM categories";
 $result = mysqli_query($db_conf, $sql);
 
 if (!$result) {

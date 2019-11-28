@@ -30,13 +30,13 @@ VALUES ('2019-09-30', 10000, 1, 1),
 SELECT * FROM categories;
 
 --получить открытые лоты с данными
-SELECT name, start_price, image, start_price + step AS current_price, category_id, FROM lots WHERE finishing_date > NOW();
+SELECT name, start_price, image, start_price + step AS current_price, category_id FROM lots WHERE finishing_date > NOW();
 
 --получить лот по его id. А также получить название категории, к которой принадлежит лот
-SELECT l.*, c.name FROM lots 1 LEFT JOIN categories c ON 1.category_id = c.id WHERE l.id = 1;
+SELECT *, categories.name FROM lots JOIN categories ON lots.category_id = categories.id WHERE lots.id = 1;
 
 --обновить название лота по его идентификатору
 UPDATE lots SET name = 'Крепления Union Contact Pro 2019 года размер S' WHERE id = 3;
 
 --получить список ставок для лота по его идентификатору с сортировкой по дате
-SELECT l.name, c.create_date FROM lots 1 LEFT JOIN rates r ON r.lot_id = l.id  WHERE l.id = 1 ORDER BY c.create_date DESC;
+SELECT l.name, c.create_date FROM lots LEFT JOIN rates r ON r.lot_id = l.id  WHERE l.id = 1 ORDER BY c.create_date DESC;
