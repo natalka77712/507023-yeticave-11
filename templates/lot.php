@@ -1,8 +1,8 @@
 <nav class="nav">
       <ul class="nav__list container">
-          <?php foreach ($categories as $category): ?>
+          <?php foreach ($categories as $categories): ?>
               <li class="nav__item">
-                <a href="pages/all-lots.html"><?= $category["name"]; ?></a>
+                <a href="pages/all-lots.html"><?= $categories["name"]; ?></a>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -45,11 +45,11 @@
           <div class="history">
             <h3>История ставок (<span><?= count($rates) ?></span>)</h3>
             <table class="history__list">
-            <?php foreach ($rates as $rate): ?>
+            <?php foreach ($rates as $rates): ?>
               <tr class="history__item">
                 <td class="history__name"><?= $rates['user_name']; ?></td>
                 <td class="history__price"><?=add_currency_to_price(format_price(htmlspecialchars($rates['current_price'])), 'rub', 'р'); ?></td>
-                <td class="history__time"><?=$rates['date_add']; ?></td>
+                <td class="history__time"><?=$rates['rate_date']; ?></td>
               </tr>
               <?php endforeach; ?>
             </table>

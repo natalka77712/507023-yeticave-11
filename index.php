@@ -1,40 +1,38 @@
 <?php
 require_once('helpers.php');
-require_once('unit.php');
-require_once('data.php');
+require_once('config.php');
 require_once('functions.php');
-require_once('bd.php');
+require_once('db.php');
 
 //запрос на получение новых лотов
-$sql = 'SELECT lots.id AS lot_id, lots.name AS lot_name, create_date, finish_date, start_price, image, start_price + step AS current_price, categories.name AS category_name
-        FROM lots categories ON lots.category_id = categories.id
-        ORDER BY lots.create_date DESC';
+$lots_sql = 'SELECT lots.id AS lot_id, lots.name AS lot_name, create_date, finish_date, start_price, image, start_price + step AS current_price,
+            categories.name AS category_name FROM lots
+            JOIN categories ON lots.category_id = categories.id
+            ORDER BY lots.create_date DESC';
 
 $id = intval($_GET['id']);
-$result = mysqli_query($db_con, $sql);
+$lots_result = mysqli_query($db_con, $lots_sql);
 
 //успешное выполнение запроса
-if (!$result) {
+if (!$lots_result) {
     $error = mysqli_error($db_con);
     print("Ошибка: Невозможно подключиться к MySQL " . $error);
 } else {
     //формируем двухмерный массив
-    $goods = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    // передаем в шаблон результат выполнения
-    $page_content = include_template("index.php", ['goods' => $goods]);
+    $lots = mysqli_fetch_all($lots_result, MYSQLI_ASSOC);
 }
 //запрос на список категорий
-$sql = "SELECT name FROM categories";
-$result = mysqli_query($db_conf, $sql);
+$categories_sql = 'SELECT name, symbol_code FROM categories';
+$categories_result = mysqli_query($db_con, $sql);
 
-if (!$result) {
+if (!$categories_result) {
     $error = mysqli_error($db_con);
     print("Ошибка: Невозможно подключиться к MySQL " . $error);
 } else {
-    $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $categories = mysqli_fetch_all($categories_result, MYSQLI_ASSOC);
 }
-
-$page_content = include_template('main.php', ['products' => $products, 'categories' => $categories]);
+// передаем в шаблон результат выполнения
+$page_content = include_template('main.php', ['categories' => $categories, 'lots' => $lots]);
 
 $layout_content = include_template('layout.php', [
 	'page_content' => $page_content,

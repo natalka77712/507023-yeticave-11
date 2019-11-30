@@ -2,15 +2,22 @@
 /**
  * Рассчет стоимости
  * @param $price - изначальная цена
- * @return $price - итоговая цена
+ * @return $formatted_price - итоговая цена
  */
 function format_price($price) {
-    $price_content = '<b class="rub">р</b>';
-    $price = ceil($price);
-    $price = number_format($price, null, null, ' ');
+    $ceiled_price = ceil($price);
+    $formatted_price = number_format($ceiled_price, 0, '.', ' ');
+    return $formatted_price;
+}
 
-    return $price . ' ' . $price_content;
-};
+/**
+ * Добавление валюты
+ * @param $price - изначальная цена
+ * @return $currency - валюта
+ */
+function add_currency_to_price($price, $className, $currency) {
+    return "{$price}<b class={$className}>{$currency}</b>";
+}
 
 /**
  * Рассчет оставшегося времени до истечения лота

@@ -1,4 +1,9 @@
 <?php
+
+$is_auth = rand(0, 1);
+$user_name = 'Наталья';
+date_default_timezone_set('Europe/Moscow');
+
 //устанавливаем и проверяем соединение с базой данных
 $db_con = mysqli_connect($db['host'], $db['user'], $db['password'], $db['database']);
 
