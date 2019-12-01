@@ -13,7 +13,6 @@ function get_new_lots($db_con) {
     if (!$lots_result) {
         $error = mysqli_error($db_con);
         print("Ошибка: Невозможно подключиться к MySQL " . $error);
-        header("HTTP/1.0 404 Not Found");
     } else {
     //формируем двухмерный массив
         return mysqli_fetch_all($lots_result, MYSQLI_ASSOC);
@@ -30,7 +29,6 @@ function get_new_categories($db_con) {
     if (!$categories_result) {
         $error = mysqli_error($db_con);
         print("Ошибка: Невозможно подключиться к MySQL " . $error);
-        header("HTTP/1.0 404 Not Found");
     } else {
     //формируем двухмерный массив
         return mysqli_fetch_all($categories_result, MYSQLI_ASSOC);
@@ -52,14 +50,13 @@ function get_new_lot_id($db_con) {
     if (!$lot_result) {
         $error = mysqli_error($db_con);
         print("Ошибка: Невозможно подключиться к MySQL " . $error);
-        header("HTTP/1.0 404 Not Found");
     } else {
         return mysqli_fetch_assoc($lot_result);
     }
 }
 
 function get_new_rates($db_con) {
-    $lot_id = isset($_GET['id']) ? intval($_GET['id']) : "";
+    $lot_id = isset($_GET['id']) ? intval($_GET['id']) : "header(HTTP/1.0 404 Not Found)";
     $rates_sql = 'SELECT rates.id, rates.rate_date as rate_date, rates.price as price, lot_id, users.name AS user, lots.start_price + lots.step AS current_price
         FROM rates
         JOIN users ON users.id = rates.user_id
@@ -72,8 +69,12 @@ function get_new_rates($db_con) {
     if (!$rates_result) {
         $error = mysqli_error($db_con);
         print("Ошибка: Невозможно подключиться к MySQL " . $error);
-        header("HTTP/1.0 404 Not Found");
     } else {
         return mysqli_fetch_assoc($rates_result);
+    }
+
+    if (!$rates_result['id']) {
+        header("HTTP/1.0 404 Not Found");
+        exit;
     }
 }
