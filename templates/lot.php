@@ -1,8 +1,8 @@
 <nav class="nav">
-      <ul class="nav__list container">
-          <?php foreach ($categories as $categories): ?>
-              <li class="nav__item">
-                <a href="pages/all-lots.html"><?= $categories["name"]; ?></a>
+    <ul class="nav__list container">
+        <?php foreach ($categories as $categories) : ?>
+            <li class="nav__item">
+                <a href="pages/all-lots.html"><?= $categories['name']; ?></a>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -18,10 +18,11 @@
           <p class="lot-item__description"><?= $lot['description'] ?></p>
         </div>
         <div class="lot-item__right">
-          <div class="lot-item__state">
-           <div class="<?=get_dt_range($lot['finish_date'])[0] < 1 ? 'lot__timer timer--finishing' : 'lot__timer'?>">
-            <?=implode(':', get_dt_range($lot['finish_date'])); ?>
-           </div>
+        <div class="lot-item__state">
+            <?php $range = get_time($lot['finish_date']);?>
+            <div class="lot-item__timer timer <?php if($range[0] == '00') print "timer--finishing"; ?>">
+              <?php print $range[0] . ":" . $range[1]; ?>
+            </div>
             <div class="lot-item__cost-state">
               <div class="lot-item__rate">
                 <span class="lot-item__amount">Текущая цена</span>
@@ -43,11 +44,11 @@
             <?php endif;?>
           </div>
           <div class="history">
-            <h3>История ставок (<span><?= count($rates) ?></span>)</h3>
+            <h3>История ставок(<span>6</span>)</h3>
             <table class="history__list">
-            <?php foreach ($rates as $rates): ?>
+            <?php foreach ($rates as $rate): ?>
               <tr class="history__item">
-                <td class="history__name"><?= $rates['user_name']; ?></td>
+                <td class="history__name"><?= $rates['user']; ?></td>
                 <td class="history__price"><?=add_currency_to_price(format_price(htmlspecialchars($rates['current_price'])), 'rub', 'р'); ?></td>
                 <td class="history__time"><?=$rates['rate_date']; ?></td>
               </tr>

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS yeticave;
+DROP DATABASE IF EXISTS yeticave;
 
 CREATE DATABASE yeticave
 DEFAULT CHARACTER SET utf8
@@ -18,7 +18,7 @@ CREATE table users (
   email VARCHAR(128) NOT NULL UNIQUE,
   name VARCHAR(128) NOT NULL,
   password VARCHAR(128) NOT NULL UNIQUE,
-  contacts VARCHAR(128) UNIQUE,
+  contacts VARCHAR(128) UNIQUE
 );
 
 CREATE table lots (
@@ -26,7 +26,7 @@ CREATE table lots (
   create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   name VARCHAR(128) NOT NULL,
   description TEXT NOT NULL,
-  image CHAR UNIQUE,
+  image VARCHAR(255),
   start_price INT NOT NULL,
   finish_date DATETIME NOT NULL,
   step INT NOT NULL,

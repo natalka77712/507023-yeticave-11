@@ -25,7 +25,7 @@
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=add_currency_to_price(htmlspecialchars($lots['start_price']), 'rub', 'р'); ?></span>
+                            <span class="lot__cost"><?=add_currency_to_price(format_price($lots['start_price']), 'rub', 'р'); ?></span>
                         </div>
                         <div class="lot__timer timer <?php if (get_time($lots['finish_date']) < 1): ?> timer--finishing <?php endif ?>">
                             <?= get_time($lots['finish_date']); ?>
