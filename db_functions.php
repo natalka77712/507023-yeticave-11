@@ -2,10 +2,10 @@
 
 //запрос на получение новых лотов
 function get_new_lots($db_con) {
-    $lots_sql = 'SELECT lots.id AS lot_id, lots.name AS lot_name, create_date, finish_date, start_price, image, start_price + step AS current_price,
-            categories.name AS category_name FROM lots
-            JOIN categories ON lots.category_id = categories.id
-            ORDER BY lots.create_date DESC';
+    $lots_sql = 'SELECT lots.id AS lot_id, lots.name AS lot_name, lots.description as lot_description, create_date, finish_date, start_price, image, start_price + step AS current_price,
+        categories.name AS category_name FROM lots
+        JOIN categories ON lots.category_id = categories.id
+        ORDER BY lots.create_date DESC';
 
     $lots_result = mysqli_query($db_con, $lots_sql);
 
@@ -20,7 +20,7 @@ function get_new_lots($db_con) {
 }
 
 //запрос на получение категорий
-function get_new_categories($db_con) {
+function get_categories($db_con) {
     $categories_sql = 'SELECT name, symbol_code FROM categories';
 
     $categories_result = mysqli_query($db_con, $categories_sql);
@@ -37,9 +37,8 @@ function get_new_categories($db_con) {
 
 //Проверка существования параметра запроса с id лота.
 //Выполнение SQL на чтение записи из таблицы с лотами, где id лота равен полученному из параметра запроса.
-function get_new_lot_id($db_con) {
-    $lot_id = isset($_GET['id']) ? intval($_GET['id']) : "";
-    $lot_sql = 'SELECT lots.id, create_date, lots.name AS lot_name, description, image, start_price + step AS current_price, finish_date, step, winner_id,
+function get_new_lot_id($db_con, $lot_id) {
+    $lot_sql = 'SELECT lots.id, create_date, lots.name AS lot_name, lots.description as lot_description, image, start_price + step AS current_price, finish_date, step, winner_id,
         categories.name AS category_id FROM lots
         JOIN categories ON lots.category_id = categories.id
         WHERE lots.id = '.$lot_id;
@@ -55,8 +54,7 @@ function get_new_lot_id($db_con) {
     }
 }
 
-function get_new_rates($db_con) {
-    $lot_id = isset($_GET['id']) ? intval($_GET['id']) : "header(HTTP/1.0 404 Not Found)";
+function get_new_rates($db_con, $lot_id) {
     $rates_sql = 'SELECT rates.id, rates.rate_date as rate_date, rates.price as price, lot_id, users.name AS user, lots.start_price + lots.step AS current_price
         FROM rates
         JOIN users ON users.id = rates.user_id

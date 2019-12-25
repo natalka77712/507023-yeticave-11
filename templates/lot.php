@@ -2,7 +2,7 @@
     <ul class="nav__list container">
         <?php foreach ($categories as $categories) : ?>
             <li class="nav__item">
-                <a href="pages/all-lots.html"><?= $categories['name']; ?></a>
+                <a href="<?= $category['symbol_code']; ?>.html"><?= $categories['name']; ?></a>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -15,7 +15,7 @@
             <img src="../<?=$lot['image']; ?>" width="730" height="548" alt=<?=$lot['lot_name']; ?>>
           </div>
           <p class="lot-item__category">Категория: <span><?= $lot['category_id']; ?></span></p>
-          <p class="lot-item__description"><?= $lot['description'] ?></p>
+          <p class="lot-item__description"><?= $lot['lot_description'] ?></p>
         </div>
         <div class="lot-item__right">
         <div class="lot-item__state">
@@ -44,15 +44,23 @@
             <?php endif;?>
           </div>
           <div class="history">
-            <h3>История ставок(<span>6</span>)</h3>
+            <h3>История ставок(<span>1</span>)</h3>
             <table class="history__list">
-            <?php foreach ($rates as $rate): ?>
-              <tr class="history__item">
+            <?php if (isset($rates['user'])): ?>
+               <tr class="history__item">
                 <td class="history__name"><?= $rates['user']; ?></td>
                 <td class="history__price"><?=add_currency_to_price(format_price(htmlspecialchars($rates['current_price'])), 'rub', 'р'); ?></td>
                 <td class="history__time"><?=$rates['rate_date']; ?></td>
-              </tr>
+               </tr>
+            <?php elseif (count($rates) > 1) : ?>
+             <?php foreach ($rates as $rate): ?>
+               <tr class="history__item">
+                <td class="history__name"><?= $rate['user']; ?></td>
+                <td class="history__price"><?=add_currency_to_price(format_price(htmlspecialchars($rate['current_price'])), 'rub', 'р'); ?></td>
+                <td class="history__time"><?=$rate['rate_date']; ?></td>
+               </tr>
               <?php endforeach; ?>
+            <?php endif; ?>
             </table>
           </div>
         </div>

@@ -13,17 +13,17 @@ VALUES ('2019-09-16', 'ivanovvasil@gmail.com', 'Иванов Василий', 'v
 ('2019-08-23', 'petrov123@gmail.com', 'Петров Николай', 'nikolya67843', '79054561894'),
 ('2019-03-16', 'sokolov@gmail.com', 'Соколов Виталий', 'sokolov987456', '79267890423'),
 ('2019-02-16', 'viktorov@gmail.com', 'Викторов Савелий', 'viktorov238765', '79267563412'),
-('2019-05-16', 'ivanovvasil@gmail.com', 'Смирнов Василий', 'smirnov986171', '79165497865'),
+('2019-05-16', 'smirnovvasil@gmail.com', 'Смирнов Василий', 'smirnov986171', '79165497865'),
 ('2019-09-29', 'sidorovivan@gmail.com', 'Сидоров Иван', 'uluwatu007', '79260951644');
 
 -- добавляет лоты
 INSERT INTO lots (create_date, name, description, image, start_price, finish_date, step, user_id, winner_id, category_id)
-VALUES (NOW(), '2014 Rossignol District Snowboard', '', 'img/lot-1.jpg', 10999, '2019-12-15', 100, 1, 1, 1),
-(NOW(), 'DC Ply Mens 2016/2017 Snowboard', '', 'img/lot-2.jpg', 159999, '2019-12-16', 500, 1, 1, 1),
-(NOW(), 'Крепления Union Contact Pro 2015 года размер L/XL', '', 'img/lot-3.jpg', 8000, '2019-12-17', 50, 1, 1, 2),
-(NOW(), 'Ботинки для сноуборда DC Mutiny Charocal', '', 'img/lot-4.jpg', 10999, '2019-12-18', 200, 1, 1, 3),
-(NOW(), 'Куртка для сноуборда DC Mutiny Charocal', '', 'img/lot-5.jpg', 7500, '2019-12-19', 500, 1, 1, 4),
-(NOW(), 'Маска Oakley Canopy', '', 'img/lot-6.jpg', 5400, '2019-12-20', 300, 1, 1, 6);
+VALUES (NOW(), '2014 Rossignol District Snowboard', 'Легкий и маневренный сноуборд.', 'img/lot-1.jpg', 10999, '2019-12-15', 100, 1, 1, 1),
+(NOW(), 'DC Ply Mens 2016/2017 Snowboard', 'Cделает из любого спортсмена чемпиона.', 'img/lot-2.jpg', 159999, '2019-12-16', 500, 1, 1, 1),
+(NOW(), 'Крепления Union Contact Pro 2015 года размер L/XL', 'Крепления размера L/XL по выгодной цене.', 'img/lot-3.jpg', 8000, '2019-12-17', 50, 1, 1, 2),
+(NOW(), 'Ботинки для сноуборда DC Mutiny Charocal', 'Обувь, проверенная временем.', 'img/lot-4.jpg', 10999, '2019-12-18', 200, 1, 1, 3),
+(NOW(), 'Куртка для сноуборда DC Mutiny Charocal', 'Покупай одежду от Munity Charocal.', 'img/lot-5.jpg', 7500, '2019-12-19', 500, 1, 1, 4),
+(NOW(), 'Маска Oakley Canopy', 'Не страшны любые капризы погоды.', 'img/lot-6.jpg', 5400, '2019-12-20', 300, 1, 1, 6);
 
 -- добавляет ставки
 INSERT INTO rates (rate_date, price, user_id, lot_id)
